@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start-app": "node ./bin/www",
+    "start": "xvfb-run node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
