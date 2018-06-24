@@ -8,9 +8,6 @@ module.exports = {
         var data = 'empty';
 
         await Nightmare({
-            switches:{
-                'proxy-server':'http://zproxy.lum-superproxy.io:22225'
-            },
             show: false,
             waitTimeout: 10000,
             })
