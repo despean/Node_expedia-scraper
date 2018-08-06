@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/expedia', indexRouter);
-app.use('/users', usersRouter);
+app.use('/booking', usersRouter);
 app.use('/', redirectRouter);
 
 // catch 404 and forward to error handler
