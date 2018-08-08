@@ -21,7 +21,7 @@ router.get('/', async function (req, res, next) {
         // console.log(scraper.parser(data))
         val = await scraper.parser(data)
 //         res.contentType('application/xml')
-        res.send({data:val, url:$url);
+        res.send({data:val, url:$url});
     })
     // res.send(val);
 });
