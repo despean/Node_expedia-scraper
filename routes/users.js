@@ -20,10 +20,9 @@ router.get('/', async function (req, res, next) {
     await scraper.get($url).then(async (data) => {
         // console.log(scraper.parser(data))
         val = await scraper.parser(data)
-        res.contentType('application/xml')
-        res.send(val);
+//         res.contentType('application/xml')
+        
     })
-    // res.send(val);
-});
+res.send({url:$url});});
 
 module.exports = router;
