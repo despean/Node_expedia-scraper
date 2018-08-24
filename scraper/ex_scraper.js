@@ -6,7 +6,6 @@ module.exports = {
     get: async function (url) {
 
         var data = 'empty';
-//zproxy.lum-superproxy.io:22225
         await Nightmare({
             show: false,
             waitTimeout: 10000,
