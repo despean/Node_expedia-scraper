@@ -8,12 +8,8 @@ module.exports = {
         var data = 'empty';
 //zproxy.lum-superproxy.io:22225
         await Nightmare({
-            show: true,
+            show: false,
             waitTimeout: 10000,
-            switches: {
-                'ignore-certificate-errors': true,
-                'proxy-server': 'zproxy.lum-superproxy.io:22225'
-            }
         })
             .authentication('lum-customer-hl_36d73268-zone-zone2-country-ca', 'iqd1m70xyyio')
             .goto(url)
