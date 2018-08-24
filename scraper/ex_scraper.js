@@ -6,12 +6,16 @@ module.exports = {
     get: async function (url) {
 
         var data = 'empty';
-
+//zproxy.lum-superproxy.io:22225
         await Nightmare({
-            show: false,
+            show: true,
             waitTimeout: 10000,
-            })
-            .authentication('lum-customer-hl_36d73268-zone-static','e7xzt68aeifw')
+            switches: {
+                'ignore-certificate-errors': true,
+                'proxy-server': 'zproxy.lum-superproxy.io:22225'
+            }
+        })
+            .authentication('lum-customer-hl_36d73268-zone-zone2-country-ca', 'iqd1m70xyyio')
             .goto(url)
             .evaluate(() => document.querySelector('body').textContent)
             .end()
@@ -74,7 +78,7 @@ module.exports = {
 
                     var value = $vehicle[$val]
 
-                    $xml += "<" + $val + ">" + value.toString().replace("'","").replace("&", "and") + "</" + $val + ">";
+                    $xml += "<" + $val + ">" + value.toString().replace("'", "").replace("&", "and") + "</" + $val + ">";
                 }
                 $xml += "</vehicle>";
             })

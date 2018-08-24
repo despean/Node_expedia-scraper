@@ -13,6 +13,10 @@ module.exports = {
         await Nightmare({
             show: false,
             waitTimeout: 10000,
+            switches: {
+                'ignore-certificate-errors': true,
+                'proxy-server': 'zproxy.lum-superproxy.io:22225'
+            }
         })
             .authentication('lum-customer-hl_36d73268-zone-static', 'e7xzt68aeifw')
             .goto(url)
