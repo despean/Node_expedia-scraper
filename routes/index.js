@@ -56,7 +56,6 @@ router.get('/fr', async function(req, res, next) {
     var url ='https://www.expedia.fr/carsearch/pickup/list/results?pickUpDate='+ encodeURI(params[1].split('=')[1])+'&pickUpTime='+time+'&dropOffDate='
     +encodeURI(params[2].split('=')[1])+'&dropOffTime='+time+'&pickUpSearchType=4&pickUpSearchTerm='+encodeURI(params[0].split('=')[1])+'&dropOffSearchTerm='
     +encodeURI(params[0].split('=')[1])+'&dropOffSearchType=4&radiusDistance=25&age=30&ageInRange=true&clientTimeZoneOffset=0'
-    console.log(url)
     var val = "No data";
     await scraper.get(url).then(data => {val = scraper.xml_gen(scraper.parser(JSON.parse(data)))})
     res.contentType('application/xml')
