@@ -56,7 +56,28 @@ router.get('/fr', async function(req, res, next) {
     var url ='https://www.expedia.fr/carsearch/pickup/list/results?pickUpDate='+ encodeURI(params[1].split('=')[1])+'&pickUpTime='+time+'&dropOffDate='
     +encodeURI(params[2].split('=')[1])+'&dropOffTime='+time+'&pickUpSearchType=4&pickUpSearchTerm='+encodeURI(params[0].split('=')[1])+'&dropOffSearchTerm='
     +encodeURI(params[0].split('=')[1])+'&dropOffSearchType=4&radiusDistance=25&age=30&ageInRange=true&clientTimeZoneOffset=0'
-    console.log(url)
+    var val = "No data";
+    await scraper.get(url).then(data => {val = scraper.xml_gen(scraper.parser(JSON.parse(data)))})
+    res.contentType('application/xml')
+    res.send(val);
+});
+
+router.get('/ca', async function(req, res, next) {
+    var params = req._parsedUrl.query.split('&')
+    var time = '1000AM';
+    if(params.length > 4){
+        time = encodeURI(params[4].split('=')[1])
+    }
+    var url ='https://www.expedia.ca/carsearch/pickup/list/results?' +
+        'loc2='+encodeURI(params[0].split('=')[1])+'&' +
+        'time1='+time+'&' +
+        'time2='+time+'&' +
+        'retrieveUrgencyCount=true' +
+        '&ageInRange=true&' +
+        'date2='+encodeURIComponent(params[2].split('=')[1])+'&' +
+        'date1='+ encodeURIComponent(params[1].split('=')[1])+'&' +
+        'locn='+encodeURI(params[0].split('=')[1])+'&retrieveNeighborhoods=true&clientTimeZoneOffset=0'
+
     var val = "No data";
     await scraper.get(url).then(data => {val = scraper.xml_gen(scraper.parser(JSON.parse(data)))})
     res.contentType('application/xml')
