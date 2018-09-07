@@ -4,30 +4,24 @@
 const Nightmare = require('nightmare')
 module.exports = {
     get: async function (url) {
-        var nightmare = Nightmare({
+
+        var data = 'empty';
+        data = await Nightmare({
             show: false,
             waitTimeout: 10000,
-        });
-        var data = 'empty';
-        await nightmare
+        })
+            .authentication('lum-customer-hl_36d73268-zone-zone2-country-ca', 'iqd1m70xyyio')
             .goto(url)
             .evaluate(() => document.querySelector('body').textContent)
-
-            .then(dt => {
-                data = dt;
-                console.log('done')
+            .end(function (uu) {
+                return uu
             })
-            .catch(error => {
-            }).end()
-            .then(_ => {
-                // finally cleanup
-                nightmare.end();
-                // kill the Electron process explicitly to ensure no orphan child processes
-                nightmare.proc.disconnect();
-                nightmare.proc.kill();
-                nightmare.ended = true;
-                nightmare = null;
-            });;
+            // .then(dt => {
+            //     data = dt;
+            //     console.log('done')
+            // })
+            // .catch(error => {
+            // })
 
         return data
     },
